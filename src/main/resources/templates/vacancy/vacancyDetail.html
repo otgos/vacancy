@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout.html">
+<head></head>
+
+
+<div layout:fragment="myContent">
+
+    <h2 class="mt-5 text-center">Егер сіздің профиліңіз осыған сәйкес келсе, ӨТІНІШ түймесін басыңыз.</h2> <br>
+    <div class="row mt-3"  th:if="${vacancy!=null}">
+        <div class="col-12 mx-auto">
+            <input type="hidden" id="annId" th:value="${vacancy.id}">
+            <div style="background-color: rgba(224,231,236,0.83); border-radius: 10px;">
+                <h3 class="text-center" th:utext="${vacancy.vacancyName}"></h3>
+
+                <h5> Толық сипаттама : <p th:utext="${vacancy.vacancyDescription}"></p></h5>
+                <h5> Қойылатын талаптар : <p th:utext="${vacancy.vacancyRequirement}"></p></h5>
+                <h5> Ұсынылған жалақы : <p th:text="${vacancy.getSalary()}"></p></h5>
+
+                <p>Жарияланған күні :<strong th:utext="${#dates.format(vacancy.postDate, 'yyyy-MM-dd')}"></strong></p>
+                <div class="col-sm-12">
+                    <a class="btn btn-info " style="color: #eee6e6" th:href = "@{'/vacancy/allVacancies'}">Кері</a>
+                    <a sec:authorize="isAuthenticated()" class="btn btn-info " style="color: #6a1a21" th:href = "@{'/vacancy/applyVacancy/' + ${vacancy.id}}">Өтініш</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-3" style="background-color: rgb(239,217,197);" th:if="${vacancy==null}">
+        <div class="col-12 mx-auto">
+
+            <h3 class="text-center">
+                403 NEWS NOT FOUND
+            </h3>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <link rel ="stylesheet" type="text/css" th:href="@{'/css/bootstrap.css'}">
+    <script src="https://kit.fontawesome.com/06833f5708.js" th:crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript"  th:src="@{'/tinymce/tinymce.min.js'}"></script>
+
+
+</head>
+    <title>Job Search</title>
+
+
+<body id="body-pd">
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0,91,150,0.83);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">ЖұМыс</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Басты</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/user/signIn'}" > Кіру</i></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/user/signUp'}" > Тіркелу</i></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                        <a class="nav-link active" th:href="@{'/vacancy/addVacancy'}"> Жұмыс Орын Қосу</a>
+                    </li>
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${currentUser.fullName}">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                            <li><a class="dropdown-item" th:href="@{'/user/profile'}" >Менің Профилім</a></li>
+                            <li><a class="dropdown-item" href="#">Хабарландыру</a></li>
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a class="dropdown-item" th:href="@{'/admin/adminPanel'}">Басқару Тақтасы</a></li>
+                            <li><a class="dropdown-item" href="#">Қолданушы Тақтасы</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="JavaScript:void(0)" onclick="document.getElementById('exitform').submit()">Шығу</a></li>
+                        </ul>
+                        <form th:action="@{'/toExit'}" id="exitform">
+
+                        </form>
+                    </li>
+
+                </ul>
+                <form th:action="@{'/vacancy/vacancySearch'}" class="d-flex">
+                    <input class="form-control me-2" name="keyword"  type="search" placeholder="Іздеу" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Іздеу</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="height-100 bg-light">
+    <div class="col-9" layout:fragment="myContent" style="margin-left: 10rem"> </div>
+</div>
+
+<!--<div class="container-fluid">-->
+<!--    <div class="container mt-3 py-1" style="background-color: rgba(0,91,150,0.83); border-radius: 10px; bottom: 10px; ">-->
+<!--        <div class="row">-->
+<!--            <p class="text-center text-dark">Copyright &copy; 2022. All Rights Reserved</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+</body>
+</div>
+<script type = "text/javascript" th:src="@{'/js/bootstrap.bundle.js'}"></script>
+
+</html>

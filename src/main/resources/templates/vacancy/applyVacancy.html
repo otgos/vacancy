@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout.html"
+>
+<div layout:fragment="myContent">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form th:action="@{'/vacancy/applyVacancy'}" method="post">
+                <input type="hidden" name="userId" id="senderId" th:value="${currentUser.id}">
+                <input type="hidden" name="vacId" id="vacId" th:value="${vacId.id}">
+
+                <div class="mt-3">
+                    <label>ТОЛЫҚ АТЫ :</label>
+                </div>
+                <div class="mt-2">
+                    <input type="text" name="fullName" class="form-control" placeholder="Толық аты-жөнін енгізіңіз">
+                </div>
+
+                <div class="mt-3">
+                    <label>Э-ПОШТА :</label>
+                </div>
+                <div class="mt-2">
+                    <input type="user_email" name="user_email" class="form-control" placeholder="электрондық поштаңызды енгізіңіз">
+                </div>
+                <div class="mt-3">
+                    <label>МАМАНДЫҒЫ :</label>
+                </div>
+                <div class="mt-2">
+                    <input type="user_email" name="profession" class="form-control" placeholder="мамандығын енгізіңіз">
+                </div>
+
+                <div class="mt-3">
+                    <label>ТЕЛЕФОН НӨМІРІ :</label>
+                </div>
+                <div class="mt-2">
+                    <input type="text" name="phone" class="form-control" placeholder="телефон нөміріңізді енгізіңіз">
+                </div>
+
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">ТІРКЕЛУ </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+</html>

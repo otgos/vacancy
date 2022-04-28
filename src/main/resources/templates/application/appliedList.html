@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout.html">
+
+<div layout:fragment="myContent">
+
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <a th:href="@{'/admin/adminPanel'}"> КЕРІ</a>
+            <br>
+            <h3 class="text-center">КЕЛГЕН ӨТІНІШТЕР ДІЗІМІ</h3>
+            <br>
+            <table class="table table-striped table-blue" style="font-size: 12px">
+                <thead>
+                <!--                    <th>STATUS</th>-->
+                <th>АТЫ ЖӨНІ</th>
+                <th>ТЕЛЕФОН НӨМЕРІ</th>
+                <th>Э ПОШТА </th>
+                <th>МАМАНДЫҒЫ </th>
+                <th>ЖҰМЫС АТЫ</th>
+                <th>ӨТІНІШ БЕРГЕН КҮНІ</th>
+                <th>ТОЛЫҒЫРАҚ</th>
+                </thead>
+                <tbody>
+                <tr  th:each="app: ${appliedList}">
+                    <td th:text="${app.fullName}" style="color: #406094; font-size: 16px"></td>
+                    <td th:text="${app.phoneNumber}"></td>
+                    <td th:text = "${app.email}"></td>
+                    <td th:text = "${app.profession}"></td>
+                    <td th:text = "${app.vacancy.vacancyName}"></td>
+                    <td th:text="${#dates.format(app.applyDate, 'yyyy-MM-dd')}"></td>
+
+                    <td>
+<!--                        List detail and further invitation or decline will be added-->
+                        <a th:href = "@{'/application/appliedListDetail/' + ${app.id}}" class="btn btn-primary btn-sm" >  ТОЛЫҒЫРАҚ</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+
+</div>
+</html>

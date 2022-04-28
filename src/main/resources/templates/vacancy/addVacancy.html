@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout.html">
+<head></head>
+
+<body>
+<div layout:fragment="myContent">
+
+    <script>
+        tinymce.init({
+            selector: '#contentArea, #contentAreas'
+        });
+    </script>
+
+    <h2 class="text-center">БОС ЖҰМЫС ОРНЫН ҚОСУ</h2>
+    <div class="row mt-3">
+        <div class="col-12">
+            <form th:action="@{'/vacancy/addVacancy'}" method="post">
+
+                <div class="row">
+                    <div class="col-12">
+                        <label>БОС ЖҰМЫС АТЫ : </label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="name" placeholder="insert vacancy name" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <label>СИПАТТАМАСЫ : </label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <textarea name="description" id="contentArea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-6">
+                            <label>ҚОЙЫЛАТЫН ТАЛАП : </label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <textarea name="requirement" id="contentAreas"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <label>ҰСЫНЫЛАТЫН ЖАЛАҚЫ : </label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <select name="salary" id="cars">
+                            <option value="Белгісіз">Белгісіз</option>
+                            <option value="100.000-300.000 Теңге">"100.000-300.000 Теңге"</option>
+                            <option value="300.000-500.000 Теңге">300.000-500.000 Теңге</option>
+                            <option value="500.000 Теңгеден жоғары">500.000 Теңгеден жоғары</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success" >ЖҰМЫСТЫ ҚОС</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+</div>
+</body>
+
+</html>
